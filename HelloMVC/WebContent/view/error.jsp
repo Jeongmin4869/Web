@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-This is a error page.
+	This is an error page.
+	<p>
+		<a href="/HelloMVC/index.jsp">try again</a>
+	</p>
 </body>
 </html>
