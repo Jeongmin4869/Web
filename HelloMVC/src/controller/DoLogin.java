@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,6 +40,13 @@ public class DoLogin extends HttpServlet {
 		CustomerService service = new CustomerService();
 		Customer customer = service.findCustomer(customerId);
 		request.setAttribute("customer", customer);
+		
+		// We can iterate over list using forEach in JSTL
+		List<Customer> customers = new ArrayList<>();
+		customers.add(new Customer("id006", "Kim", "kim@hansung.ac.kr"));
+		customers.add(new Customer("id007", "Lee", "lee@hansung.ac.kr"));
+		customers.add(new Customer("id008", "Park", "park@hansung.ac.kr"));
+		request.setAttribute("customerList", customers);
 		
 		String page;
 		if(customer == null)
