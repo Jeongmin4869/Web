@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	This is an error page.
+	This is an error page. 
 	<p>
 		<a href="/HelloMVC/index.jsp">try again</a>
 	</p>
