@@ -24,8 +24,7 @@
 
 	<bean id="logger" class="kr.ac.hansung.spring.aop.Logger"></bean>
 
-	<aop:config>
-
+	<!-- <aop:config>
 		<aop:aspect id="myAspect" ref="logger">
 			<aop:pointcut
 				expression="execution(void kr.ac.hansung.spring.aop.*.sound())"
@@ -33,5 +32,7 @@
 			<aop:before method="aboutToSound"
 				pointcut-ref="selectSound" />
 		</aop:aspect>
-	</aop:config>
+	</aop:config> -->
+
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans>
