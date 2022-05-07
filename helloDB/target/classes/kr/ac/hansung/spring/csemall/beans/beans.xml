@@ -8,6 +8,12 @@
 	<context:property-placeholder
 		location="kr/ac/hansung/spring/props/jdbc.properties" />
 
+	<context:annotation-config></context:annotation-config>
+	
+	<context:component-scan
+		base-package="kr.ac.hansung.spring.csemall">
+	</context:component-scan>
+	
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName"
@@ -17,8 +23,4 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 
-
-	<bean id="offerDAO" class="kr.ac.hansung.spring.csemall.OfferDAO">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
 </beans>
