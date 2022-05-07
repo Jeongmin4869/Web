@@ -20,4 +20,12 @@ public class OfferDAO {
 		String sqlStatement = "select count(*) from offers";
 		return jdbcTemplateObject.queryForObject(sqlStatement, Integer.class);
 	}
+	
+	//querying and returning a single object
+	public Offer getOffer(String name) {
+		String sqlStatement = "select * from offers where name=?";
+		
+		return jdbcTemplateObject.queryForObject(sqlStatement,new Object[] {name},
+				new RowMapper<Offer>());
+	}
 }
