@@ -27,9 +27,9 @@ public class OfferDAO {
 
 	// querying and returning a single object
 	public Offer getOffer(String name) {
-		String sqlStatement = "select * from offers where name=?";
+		String sqlStatement = "select * from offers";
 
-		return jdbcTemplateObject.queryForObject(sqlStatement, new Object[] {name}, 
+		return jdbcTemplateObject.queryForObject(sqlStatement, 
 				new RowMapper<Offer>() {
 						@Override
 						public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
