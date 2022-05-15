@@ -2,6 +2,7 @@ package kr.ac.hansung.spring.csemall;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -27,22 +28,38 @@ public class OfferDAO {
 
 	// querying and returning a single object
 	public Offer getOffer(String name) {
+		String sqlStatement = "select * from offers where name = ?";
+
+		return jdbcTemplateObject.queryForObject(sqlStatement, new Object[] { name }, new OfferMapper());
+	}
+
+	// querying and returning multiple objects
+	public List<Offer> getOffers() {
 		String sqlStatement = "select * from offers";
 
-		return jdbcTemplateObject.queryForObject(sqlStatement, 
-				new RowMapper<Offer>() {
-						@Override
-						public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
-							
-							Offer offer = new Offer();
-							
-							offer.setId(rs.getInt("id"));
-							offer.setName(rs.getString("name"));
-							offer.setEmail(rs.getString("email"));
-							offer.setText(rs.getString("text"));
-							
-							return offer;
-						}
-		});
+		return jdbcTemplateObject.query(sqlStatement, new OfferMapper());
+
 	}
+	
+	public boolean insert(Offer offer) {
+		String name = offer.getName();
+		String email = offer.getEmail();
+		String text = offer.getText();
+		String sqlStatement = "insert into offers (name, email, text) values(?, ?, ?)" ;
+		
+		//1일경우 성공적으로 insert가 이루어짐
+		return jdbcTemplateObject.update(sqlStatement, new Object[] {name, email, text}) == 1;
+	}
+	
+	public boolean update(Offer offer) {
+		int id = offer.getId();
+		String name = offer.getName();
+		String email = offer.getEmail();
+		String text = offer.getText();
+		
+		String sqlStatement = "update offers set name=?, email=?, text=? where id=?" ;
+		//1일경우 성공적으로 update가 이루어짐
+		return jdbcTemplateObject.update(sqlStatement, new Object[] {name, email, text, id}) == 1;
+	}
+
 }
