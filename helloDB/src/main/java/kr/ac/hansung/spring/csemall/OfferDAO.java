@@ -1,6 +1,5 @@
 package kr.ac.hansung.spring.csemall;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -8,7 +7,6 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -60,6 +58,11 @@ public class OfferDAO {
 		String sqlStatement = "update offers set name=?, email=?, text=? where id=?" ;
 		//1일경우 성공적으로 update가 이루어짐
 		return jdbcTemplateObject.update(sqlStatement, new Object[] {name, email, text, id}) == 1;
+	}
+	
+	public boolean delete(int id) {
+		String sqlStatement = "delete from offers where id =?";
+		return (jdbcTemplateObject.update(sqlStatement, new Object[] {id}) == 1);
 	}
 
 }

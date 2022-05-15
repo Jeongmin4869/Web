@@ -33,9 +33,14 @@ public class MainApp {
 		
 		offer.setName("Jeongmin Kim");
 		if(offerDAO.update(offer))
-			System.out.println("update with object: " + offer);
+			System.out.println("updated with object: " + offer);
 		else 
 			System.out.println("Cannot update an object");
+		
+		if(offerDAO.delete(offer.getId()))
+			System.out.println("object is deleted");
+		else 
+			System.out.println("cannot delete object");
 		
 		context.close();
 	}
