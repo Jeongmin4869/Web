@@ -1,4 +1,4 @@
-package kr.ac.hansung;
+package kr.ac.hansung.web;
 
 import java.text.DateFormat;
 import java.util.Date;
