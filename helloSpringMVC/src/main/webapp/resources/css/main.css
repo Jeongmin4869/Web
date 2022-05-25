@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+
+.formtalbe{
+	width:400px;
+	border: 1px solid blue;
+	margin: 50px;
+	padding: 20px;
+}
+
+.label{
+	text-align: right;
+	vertical-align: top;
+}
