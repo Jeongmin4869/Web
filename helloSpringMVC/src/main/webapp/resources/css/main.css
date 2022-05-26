@@ -1,14 +1,27 @@
 @charset "UTF-8";
 
 
-.formtalbe{
+.formtable{
 	width:400px;
 	border: 1px solid blue;
 	margin: 50px;
 	padding: 20px;
 }
 
-.label{
+.lable{
 	text-align: right;
 	vertical-align: top;
+}
+
+.control{
+	margin-left:20px;
+}
+
+textarea{
+	width: 300px;
+	height: 100px;
+}
+
+input[type=text]{
+	width: 300px;
 }
