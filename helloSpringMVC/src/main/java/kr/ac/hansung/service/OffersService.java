@@ -22,4 +22,8 @@ public class OffersService {
 		return offerDao.getOffers();
 	}
 
+	public void insert(Offer offer) {
+		offerDao.insert(offer);
+	}
+
 }
