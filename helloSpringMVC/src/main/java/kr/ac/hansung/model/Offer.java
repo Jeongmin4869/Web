@@ -1,10 +1,22 @@
 package kr.ac.hansung.model;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Offer {
 
 	private int id;
+	
+	@Size(min=2, max=100, message="Name must be between 2 and 1000 chars")
 	private String name;
+	
+	@Email(message="Please provide a valid email address")
+	@NotEmpty(message = "The email address cannot be empty")
 	private String email;
+	
+	@Size(min=5, max=100, message="Text must be between 5 and 100 chars")
 	private String text;
 	
 	public Offer() {

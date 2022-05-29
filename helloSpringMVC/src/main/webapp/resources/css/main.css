@@ -25,3 +25,9 @@ textarea{
 input[type=text]{
 	width: 300px;
 }
+
+.error{
+	forn-size:samll;
+	color:red;
+	margin-left:10px;
+}
