@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 
 <!doctype html>
 <html lang="en">
@@ -19,6 +20,8 @@
 
     <!-- Custom styles for this template -->
     <link href="<c:url value="resources/css/carousel2.css"/>" rel="stylesheet">
+  	<link href="<c:url value="resources/css/main.css"/>"
+	rel="stylesheet">
   </head>
   <body>
 
@@ -31,10 +34,10 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="<c:url value="/"/>">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="<c:url value="/products"/>">Products</a>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled" href="#">Disabled</a>
