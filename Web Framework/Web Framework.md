@@ -84,3 +84,132 @@ lombok을 이용하면 Getter와 Setter를 손쉽게 사용할 수 있다.<br/>
     
 
 @Getter(접근자), @Setter(설정자), @ToString(변수값을 리턴) 등의 Annotation을 사용 할 수 있다.
+<br/>
+
+## CRUD <br/><br/> 
+**Create Read Update Delete**
+
+* @Controller Annotation을 사용하여 class에 빈을 자동으로 컨테이너에서 관리 <br/>
+	* controller -> service 호출 -> dao 사용 <br/>
+* @Autowired를 사용하여 의존적 주입 dependency injection <br/>
+
+* @RequestMapping("/") 을 사용하여 url 매핑 <br/>
+
+* @Service 를 사용하여 빈으로 등록
+	* service-context.xml에서 등록되어있는 패키지를 스캔하여 Service라되어있는 부분을 빈으로 등록
+	* Service는 DAO를 이용한다.
+
+## Annotation <br/><br/>
+* DAO에는 @Repository
+* Controller에는 @Controller
+* Service에는 @Service
+
+ProductDao의 @Autowired가 dao-context의 dataSource타입의 데이터를 주입하여 jdbcTemplate 생성
+@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
+
+DB에서 받는 데이터는 redcord상태로 넘어오게 되는데 이것을 객체(object)형태로 매핑시키는것
+new RowMapper<Product>() 를 익명클래스로 구현
+return jdbcTemplate.query(sqlStatement,new RowMapper<Product>() {
+
+			@Override
+			public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Product product = new Product();
+					
+					product.setId(rs.getInt("id"));
+					product.setName(rs.getString("name"));
+					product.setCategory(rs.getString("category"));
+					product.setManufacturer(rs.getString("manufacturer"));
+					product.setUnitInStock(rs.getInt("unitInStock"));
+					product.setDescription(rs.getString("description"));
+					//product.setPrice(rs.getInt("price"));
+					return product;
+					
+			}
+
+		});
+
+mapRow는 레코드 수 만큼 호출된다.
+
+jstl/core를 사용해 데이터를 출력. prefix="c" 로 되어있음을 기억
+밑 코드를 추가해 테이블로 출력. 
+w3schools.com의 BS4 Tables
+동적으로 Database를 읽어온다. databaseCore를 활용
+-> <c:forMach var="product" items="${products }"></c:forMach>
+
+이 때items="${products }"에서 products는 controller에 있는 key값과 일치해야한다.
+
+<tr> : tableRow
+
+	<div class="container-wapper">
+		<div class="container">
+			<h2>All Products</h2>
+			<p>착한 가격으로 상품을 살펴보세요 :)</p>
+			<table class="table table-striped">
+				<thead>
+					<tr class = "bg-success">
+						<th>Name</th>
+						<th>Category</th>
+						<th>Price</th>
+						<th>Manufacturer</th>
+						<th>UnitInStock</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="product" items="${products}">
+						<tr>
+							<td>${product.name}</td>
+							<td>${product.category}</td>
+							<td>${product.price}</td>
+							<td>${product.manufacturer}</td>
+							<td>${product.unitInStock}</td>
+							<td>${product.description}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+home.jsp와 products.jsp의 중복된 부분을 apache tiles를 사용하여 재구성
+
+pom.xml에 라이브러리 추가
+⁠
+<!-- tiles-extras -->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-extras</artifactId>
+			<version>3.0.8</version>
+		</dependency>
+
+
+servlet-context의 
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+를 통해 웹 페이지를 바꿔왔다.
+
+대신 두가지 빈을 등록
+	<beans:bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+	</beans:bean>
+	<beans:bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>/WEB-INF/tiles-def/tiles.xml</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+반복되는 코드를 없애기 위해 layout, menu, footer.jsp를 생성
+apache tiles를 사용하기 위해 밑 태그립 사용
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
