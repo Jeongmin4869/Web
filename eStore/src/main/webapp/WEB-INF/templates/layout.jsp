@@ -13,7 +13,7 @@
 <meta name="author" content="">
 <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-<title>eStore</title>
+<title><tiles:insertAttribute name="title"/></title>
 
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/4.0/examples/carousel/">
