@@ -103,9 +103,9 @@ lombok을 이용하면 Getter와 Setter를 손쉽게 사용할 수 있다.<br/>
 * DAO에는 @Repository
 * Controller에는 @Controller
 * Service에는 @Service
-
+<br/><br/>
 ProductDao의 @Autowired가 dao-context의 dataSource타입의 데이터를 주입하여 jdbcTemplate 생성
-@Autowired
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
@@ -113,9 +113,10 @@ ProductDao의 @Autowired가 dao-context의 dataSource타입의 데이터를 주�
 
 DB에서 받는 데이터는 redcord상태로 넘어오게 되는데 이것을 객체(object)형태로 매핑시키는것
 new RowMapper<Product>() 를 익명클래스로 구현
-return jdbcTemplate.query(sqlStatement,new RowMapper<Product>() {
+	
+	return jdbcTemplate.query(sqlStatement,new RowMapper<Product>() {
 
-			@Override
+		@Override
 			public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
 					Product product = new Product();
 					
@@ -188,15 +189,17 @@ pom.xml에 라이브러리 추가
 
 
 servlet-context의 
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
+		<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<beans:property name="prefix" value="/WEB-INF/views/" />
+			<beans:property name="suffix" value=".jsp" />
+		</beans:bean>
 	
 를 통해 웹 페이지를 바꿔왔다.
 
 대신 두가지 빈을 등록
+	
 	<beans:bean id="tilesViewResolver"
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
 	</beans:bean>
@@ -211,5 +214,6 @@ servlet-context의
 
 반복되는 코드를 없애기 위해 layout, menu, footer.jsp를 생성
 apache tiles를 사용하기 위해 밑 태그립 사용
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+	
+	<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
