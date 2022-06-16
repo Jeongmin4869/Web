@@ -19,7 +19,6 @@ public class AdminController {
 	
 	@RequestMapping
 	public String adminPage() {
-		
 		return "admin";
 	}
 	

@@ -1,11 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <div class="container-wrapper">
 	<div class="container">
 		<h2>Product Inventory</h2>
-		<p>Á¦Ç° Àç°í ÇöÈ²ÀÔ´Ï´Ù.</p>
+		<p>ì œí’ˆ ìž¬ê³  í˜„í™©ìž…ë‹ˆë‹¤.</p>
 		<table class="table table-striped">
 			<thead>
 				<tr class="bg-success">
