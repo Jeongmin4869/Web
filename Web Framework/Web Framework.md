@@ -4,13 +4,11 @@
 **2. Back-end (Spring, Hibernate)** <br/><br/>
 
 ## BootStrap<br/> 
-디바이스 크기에 따른 반응형 웹 개발
+브라우저의 크기에 따라 페이지가 반응하는 **반응형 웹** 을 구축할 수 있는 프레임워크
 
-브라우저의 크기에 따라 페이지가 반응하는 반응형 웹을 구축할 수 있는 프레임워크
+* BootStrap을 사용하기 위해 jQuery와 Popper.js의 CDN버전을 넣어주어야 한다.
 
-BootStrap은 Mobile First이다.
-
-BootStrap을 사용하기 위해 jQuery와 Popper.js의 CDN버전을 넣어주어야 한다.<br/><br/>
+* BootStrap은 Mobile First이다.<br/><br/>
 
 **Mobile First**<br/>
 모바일을 우선적으로 고려. 중요도에 따라 어떤 컨텐츠를 보여줄 것인지 결정<br/>
@@ -84,11 +82,11 @@ lombok을 이용하면 Getter와 Setter를 손쉽게 사용할 수 있다.<br/>
     
 
 @Getter(접근자), @Setter(설정자), @ToString(변수값을 리턴) 등의 Annotation을 사용 할 수 있다.
-<br/>
 
-## CRUD <br/><br/> 
-**Create Read Update Delete**
-
+<br/><br/>
+## CRUD 
+**Create Read Update Delete**<br/>
+Annotation을 활용 <br/>
 * @Controller Annotation을 사용하여 class에 빈을 자동으로 컨테이너에서 관리 <br/>
 	* controller -> service 호출 -> dao 사용 <br/>
 * @Autowired를 사용하여 의존적 주입 dependency injection <br/>
@@ -99,10 +97,11 @@ lombok을 이용하면 Getter와 Setter를 손쉽게 사용할 수 있다.<br/>
 	* service-context.xml에서 등록되어있는 패키지를 스캔하여 Service라되어있는 부분을 빈으로 등록
 	* Service는 DAO를 이용한다.
 
-## Annotation <br/><br/>
-* DAO에는 @Repository
-* Controller에는 @Controller
-* Service에는 @Service
+<br/>
+
++ DAO에는 @Repository
++ Controller에는 @Controller
++ Service에는 @Service
 <br/><br/>
 ProductDao의 @Autowired가 dao-context의 dataSource타입의 데이터를 주입하여 jdbcTemplate 생성
 	@Autowired
