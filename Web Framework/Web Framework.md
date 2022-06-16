@@ -103,15 +103,19 @@ Annotation을 활용 <br/>
 + Controller에는 @Controller
 + Service에는 @Service
 <br/><br/>
-ProductDao의 @Autowired가 dao-context의 dataSource타입의 데이터를 주입하여 jdbcTemplate 생성
+
++ ProductDao.java<br/> 
+@Autowired가 dao-context의 dataSource타입의 데이터를 주입하여 jdbcTemplate을 생성한다.
+		
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-
-DB에서 받는 데이터는 redcord상태로 넘어오게 되는데 이것을 객체(object)형태로 매핑시키는것
-new RowMapper<Product>() 를 익명클래스로 구현
+<br/>
+DB에서 받는 데이터는 redcord상태로 넘어오게 되는데 이것을 객체(object)형태로 매핑시킨다.
++ new RowMapper<Product>() 를 익명클래스로 구현
++ mapRow는 레코드 수 만큼 호출된다.
 	
 	return jdbcTemplate.query(sqlStatement,new RowMapper<Product>() {
 
@@ -132,15 +136,15 @@ new RowMapper<Product>() 를 익명클래스로 구현
 
 		});
 
-mapRow는 레코드 수 만큼 호출된다.
+
 
 jstl/core를 사용해 데이터를 출력. prefix="c" 로 되어있음을 기억
 밑 코드를 추가해 테이블로 출력. 
 w3schools.com의 BS4 Tables
 동적으로 Database를 읽어온다. databaseCore를 활용
--> <c:forMach var="product" items="${products }"></c:forMach>
+	<c:forMach var="product" items="${products }"></c:forMach>
 
-이 때items="${products }"에서 products는 controller에 있는 key값과 일치해야한다.
+items="${products }"에서 products는 controller에 있는 key값과 일치해야한다.
 
 <tr> : tableRow
 
