@@ -23,9 +23,9 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="<c:url value="resources/css/carousel2.css"/>"
+<link href="<c:url value="/resources/css/carousel2.css"/>"
 	rel="stylesheet">
-<link href="<c:url value="resources/css/main.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
 </head>
 <body>
 
