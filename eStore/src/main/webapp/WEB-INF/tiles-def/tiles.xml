@@ -32,4 +32,9 @@
     <put-attribute name="body" value="/WEB-INF/views/productInventory.jsp" />
   </definition>
   
+     <definition name="addProduct" extends="base">
+    <put-attribute name="title" value="Add Product page" />
+    <put-attribute name="body" value="/WEB-INF/views/addProduct.jsp" />
+  </definition>
+  
 </tiles-definitions>

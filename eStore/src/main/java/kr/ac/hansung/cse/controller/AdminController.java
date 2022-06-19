@@ -31,4 +31,16 @@ public class AdminController {
 		
 	}
 	
+	@RequestMapping("/productInventory/addProduct")
+	public String addProduct(Model model) {
+		
+		Product product = new Product();
+		product.setCategory("컴퓨터"); // default 세팅
+		
+		model.addAttribute("product", product);
+		
+		
+		return "addProduct";
+	}
+	
 }
