@@ -23,7 +23,7 @@ public class ProductDao {
 	}
 	
 	public List<Product> getProducts(){
-		String sqlStatement = "select * from product"; // record -> object·Î ¸ÅÄª
+		String sqlStatement = "select * from product"; // record -> objectï¿½ï¿½ ï¿½ï¿½Äª
 		
 		return jdbcTemplate.query(sqlStatement,new RowMapper<Product>() {
 
@@ -37,7 +37,7 @@ public class ProductDao {
 					product.setManufacturer(rs.getString("manufacturer"));
 					product.setUnitInStock(rs.getInt("unitInStock"));
 					product.setDescription(rs.getString("description"));
-					//product.setPrice(rs.getInt("price"));
+					product.setPrice(rs.getInt("price"));
 					return product;
 					
 			}

@@ -36,7 +36,7 @@ public class AdminController {
 	public String addProduct(Model model) {
 		
 		Product product = new Product();
-		product.setCategory("ÄÄÇ»ÅÍ"); // default ¼¼ÆÃ
+		product.setCategory("ì»´í“¨í„°"); // default
 		
 		model.addAttribute("product", product);
 		
@@ -46,7 +46,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/productInventory/addProduct", method=RequestMethod.POST)
 	public String addProductPost(Product product) {
-		
+		System.out.println(product.getName());
 		if(!productService.addProduct(product))
 			System.out.println("Adding product cannot be done");
 		return "redirect:/admin/productInventory";

@@ -1,12 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <div class="container-wrapper">
 
 	<div class="container">
 		<h2>Administrator Page</h2>
-		<p class="lead">Product¸¦ °ü¸®ÇÒ ¼ö ÀÖ´Â ÆäÀÌÁö ÀÔ´Ï´Ù.</p>
+		<p class="lead">Productë¥¼ ê´€ë¦¬í•  ìˆ˜ ìˆëŠ” í˜ì´ì§€ ì…ë‹ˆë‹¤.</p>
 	</div>
 
 	<div class="container">
