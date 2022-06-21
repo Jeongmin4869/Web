@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -44,6 +45,7 @@ public class AdminController {
 		return "addProduct";
 	}
 	
+	
 	@RequestMapping(value = "/productInventory/addProduct", method=RequestMethod.POST)
 	public String addProductPost(Product product) {
 		System.out.println(product.getName());
@@ -51,6 +53,17 @@ public class AdminController {
 			System.out.println("Adding product cannot be done");
 		return "redirect:/admin/productInventory";
 		
+	}
+	
+	@RequestMapping(value = "/productInventory/deleteProduct/{id}",  method=RequestMethod.GET)
+	public String deleteProduct(@PathVariable int id) {
+		
+		if(productService.deleteProduct(id)) {
+			System.out.println("Deleting product cannot be done");
+		}
+		
+		return "redirect:/admin/productInventory";
+
 	}
 	
 	

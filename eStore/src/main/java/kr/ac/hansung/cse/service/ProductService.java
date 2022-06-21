@@ -23,4 +23,8 @@ public class ProductService {
 
 		return productDao.addProduct(product);
 	}
+
+	public boolean deleteProduct(int id) {
+		return productDao.deleteProduct(id);
+	}
 }
