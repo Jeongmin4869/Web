@@ -27,4 +27,8 @@ public class ProductService {
 	public boolean deleteProduct(int id) {
 		return productDao.deleteProduct(id);
 	}
+
+	public Product getProductById(int id) {
+		return productDao.getProductById(id);
+	}
 }

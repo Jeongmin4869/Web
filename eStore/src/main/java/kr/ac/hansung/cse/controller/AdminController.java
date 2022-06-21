@@ -58,12 +58,27 @@ public class AdminController {
 	@RequestMapping(value = "/productInventory/deleteProduct/{id}",  method=RequestMethod.GET)
 	public String deleteProduct(@PathVariable int id) {
 		
-		if(productService.deleteProduct(id)) {
+		if(!productService.deleteProduct(id)) {
 			System.out.println("Deleting product cannot be done");
 		}
-		
 		return "redirect:/admin/productInventory";
-
+	}
+	
+	@RequestMapping(value = "/productInventory/updateProduct/{id}",  method=RequestMethod.GET)
+	public String updateProduct(@PathVariable int id, Model model) {
+		Product product = productService.getProductById(id);
+		model.addAttribute("product", product);
+		return "updateProduct";
+	
+	}
+	
+	@RequestMapping(value = "/productInventory/updateProduct", method=RequestMethod.POST)
+	public String updateProductPost(Product product) {
+		System.out.println(product.getName());
+/*		if(!productService.updateProduct(product))
+			System.out.println("Updating product cannot be done");*/
+		return "redirect:/admin/productInventory";
+		
 	}
 	
 	
