@@ -11,6 +11,8 @@
 		<sf:form action="${pageContext.request.contextPath}/admin/productInventory/updateProduct" 
 		method="post" modelAttribute="product">
 		
+		<sf:hidden path="id"/>
+		
 		<div class ="form-group">
 			<label for="name">Name</label>
 			<sf:input path="name" id = "name" class="form-control"/>

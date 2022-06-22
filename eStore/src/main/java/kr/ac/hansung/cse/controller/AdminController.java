@@ -74,9 +74,9 @@ public class AdminController {
 	
 	@RequestMapping(value = "/productInventory/updateProduct", method=RequestMethod.POST)
 	public String updateProductPost(Product product) {
-		System.out.println(product.getName());
-/*		if(!productService.updateProduct(product))
-			System.out.println("Updating product cannot be done");*/
+		//System.out.println(product);
+		if(!productService.updateProduct(product))
+			System.out.println("Updating product cannot be done");
 		return "redirect:/admin/productInventory";
 		
 	}

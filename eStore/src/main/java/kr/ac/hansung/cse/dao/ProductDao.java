@@ -89,4 +89,20 @@ public class ProductDao {
 
 		});
 	}
+
+	public boolean updateProduct(Product product) {
+		
+		int id = product.getId();
+		String name = product.getName();
+		String category = product.getCategory();
+		String manufacturer = product.getManufacturer();
+		int price = product.getPrice();
+		int unitInStock = product.getUnitInStock();
+		String description = product.getDescription();
+
+		String sqlStatement = "update product set name=?, category=?, price=?, manufacturer=?, unitInStock=?, description=? "
+				+ "where id=?";
+		return jdbcTemplate.update(sqlStatement,
+				new Object[] { name, category, price, manufacturer, unitInStock, description, id }) == 1;
+	}
 }
