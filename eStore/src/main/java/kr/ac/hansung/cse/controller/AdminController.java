@@ -53,6 +53,16 @@ public class AdminController {
 	@RequestMapping(value = "/productInventory/addProduct", method=RequestMethod.POST)
 	public String addProductPost(@Valid Product product, BindingResult result) {
 		
+		if(result.hasErrors()) {
+			System.out.println("Form data has some errors");
+			List<ObjectError> errors = result.getAllErrors();
+			
+			for(ObjectError error:errors) {
+				System.out.println(error.getDefaultMessage());
+			}
+			return "addProduct";
+		}
+
 		if(!productService.addProduct(product))
 			System.out.println("Adding product cannot be done");
 		return "redirect:/admin/productInventory";
