@@ -5,6 +5,12 @@
 <div class="container-wrapper">
 	<div class="container">
 		<h2>Login with username and password</h2>
+		
+		<c:if test="${not empty errorMsg}">
+			<div style="color:#ff0000;"> <b3> ${errorMsg }</b3></div>	
+		</c:if>
+		
+		
 		<form action="<c:url value="/login"/>" method="post">
 			<div class="form-group">
 				<label for="username">Username:</label> <input type="text"
