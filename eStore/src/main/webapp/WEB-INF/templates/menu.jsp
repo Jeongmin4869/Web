@@ -29,8 +29,15 @@
 						</li>
 					</c:if>
 					
-					<li class="nav-item"><a class="nav-link" href="<c:url value="/logout"/> " >Logout</a>
+					<li class="nav-item"> <a class="nav-link" 
+						href="javascript:document.getElementById('logout').submit()">Logout</a>
 					</li>
+
+					<form id="logout" action="<c:url value="/logout"/>" method = "post">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+					</form>
+					
+				
 				</c:if>
 				
 				<c:if test="${pageContext.request.userPrincipal.name == null }">

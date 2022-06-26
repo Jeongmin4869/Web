@@ -10,6 +10,10 @@
 			<div style="color:#ff0000;"> <b3> ${errorMsg }</b3></div>	
 		</c:if>
 		
+		<c:if test="${not empty logoutMsg}">
+			<div style="color:#0000ff;"> <b3> ${logoutMsg }</b3></div>	
+		</c:if>
+		
 		
 		<form action="<c:url value="/login"/>" method="post">
 			<div class="form-group">
