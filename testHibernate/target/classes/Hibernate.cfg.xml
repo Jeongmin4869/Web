@@ -12,8 +12,7 @@
         <property name="format_sql">false</property>
         <property name="hibernate.hbm2ddl.auto"> create </property>
         
-        <mapping resource="com/websystique/hibernate/model/Student.hbm.xml"/>
-        <mapping class=""/>
+        <mapping class="testHibernate.Product"/>
         
     </session-factory>
 </hibernate-configuration>
