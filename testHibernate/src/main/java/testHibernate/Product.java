@@ -17,7 +17,7 @@ import lombok.Setter;
  * Entity bean으로 등록
  *
  ******************/
-@Entity(name="Product2") 
+@Entity(name="Product") 
 public class Product {
 	
 	@Id // primary key
