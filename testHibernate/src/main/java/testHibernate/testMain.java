@@ -20,9 +20,9 @@ public class testMain {
 		sessionFactory = new Configuration().configure().buildSessionFactory();
 		
 		Product product = new Product();
-		product.setName("notebook");
-		product.setPrice(2000);
-		product.setDescription("Awesome notebook!!");
+		product.setName("notebook1");
+		product.setPrice(100);
+		product.setDescription("Powerful notebook!!");
 		
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
