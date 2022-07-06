@@ -1,9 +1,12 @@
 package testHibernate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,5 +33,9 @@ public class Product {
 	private int price;
 	
 	private String description;
+	
+	@ManyToOne(cascade=CascadeType.ALL) // persist, delete
+	@JoinColumn(name="category_id")
+	private Category category;
 	
 }

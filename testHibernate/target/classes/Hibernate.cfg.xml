@@ -13,6 +13,6 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
 <!-- org.hibernate.dialect.MySQL8Dialect -->
         <mapping class="testHibernate.Product"/>
-        
+        <mapping class="testHibernate.Category"/>
     </session-factory>
 </hibernate-configuration>
