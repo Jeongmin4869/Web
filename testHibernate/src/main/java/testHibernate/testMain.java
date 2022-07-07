@@ -25,11 +25,15 @@ public class testMain {
 		product1.setDescription("Powerful notebook!!");
 		product1.setCategory(category1);
 		
+		category1.getProduct().add(product1);
+		
 		Product product2 = new Product();
 		product2.setName("Desktop");
 		product2.setPrice(1000);
 		product2.setDescription("Powerful desktop!!");
 		product2.setCategory(category1);
+		
+		category1.getProduct().add(product2);
 		
 		Product product3 = new Product();
 		product3.setName("Sonata");
@@ -37,17 +41,16 @@ public class testMain {
 		product3.setDescription("대중적인 자동차!!");
 		product3.setCategory(category2);
 		
+		category2.getProduct().add(product3);
 		
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		
 		// 객체를 저장하여 DB에 반영. sql statement 를 대신함.
-		session.save(product1);
-		session.save(product2);
-		session.save(product3);
-		
-		product1.setCategory(null);
-		session.delete(product1); // category1 - product1, product2 // 단독은 에러
+		session.save(category1);
+		session.save(category2);
+
+		session.delete(category1);
 		
 		tx.commit();
 		session.close();

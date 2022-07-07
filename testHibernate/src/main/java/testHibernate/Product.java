@@ -1,6 +1,5 @@
 package testHibernate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +33,7 @@ public class Product {
 	
 	private String description;
 	
-	@ManyToOne(cascade=CascadeType.ALL) // persist, delete
+	@ManyToOne// persist, delete
 	@JoinColumn(name="category_id")
 	private Category category;
 	
