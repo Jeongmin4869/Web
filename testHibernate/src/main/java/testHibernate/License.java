@@ -26,7 +26,7 @@ public class License {
 	private String licenseNumber;
 	private Date issueDate;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name="person_id")
 	private Person person;
 	

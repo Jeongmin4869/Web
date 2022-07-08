@@ -24,6 +24,8 @@ public class testMain {
 		license1.setIssueDate(new Date());
 		license1.setPerson(person1); // license -> person
 		
+		person1.setLicense(license1);// person -> license
+		
 		Person person2 = new Person();
 		person2.setFirstName("Alice");
 		person2.setLastName("kim");
@@ -33,12 +35,14 @@ public class testMain {
 		license2.setIssueDate(new Date());
 		license2.setPerson(person2);
 		
+		person2.setLicense(license2);
+		
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		
 		// 객체를 저장하여 DB에 반영. sql statement 를 대신함.
-		session.save(license1);
-		session.save(license2);
+		session.save(person1);
+		session.save(person2);
 
 		tx.commit();
 		session.close();
