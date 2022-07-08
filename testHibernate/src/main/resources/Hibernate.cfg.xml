@@ -12,7 +12,10 @@
         <property name="format_sql">false</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
 <!-- org.hibernate.dialect.MySQL8Dialect -->
+
         <mapping class="testHibernate.Product"/>
         <mapping class="testHibernate.Category"/>
+        <mapping class="testHibernate.Person"/>
+        <mapping class="testHibernate.License"/>
     </session-factory>
 </hibernate-configuration>
