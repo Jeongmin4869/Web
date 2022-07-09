@@ -221,3 +221,63 @@ apache tiles를 사용하기 위해 밑 태그립 사용
 	
 	<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
+		
+		
+tiles.jsp에 view들 정의
+
+  <definition name="base" template="/WEB-INF/templates/layout.jsp">
+    <put-attribute name="title" value="eStore homepage" />
+    <put-attribute name="menu" value=/WEB-INF/templates/menu.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" />
+  </definition>
+
+    <definition name="home" extends="base">
+    <put-attribute name="title" value="My eStore homepage" />
+    <put-attribute name="body" value=/WEB-INF/views/home.jsp" />
+  </definition>
+  
+home은 base를 상속받음
+나머지는 상속받고, title은 재정의하고, body만 따로 추가.
+ definition name이 각각 controller의 return값과 일치해야한다.
+
+apacheTiles
+중복된 코드 제거
+template을 활용해 사용자에게 동일한 페이지의 느낌을 줄 수 있다
+
+Controller 
+
+@Controller
+@RequestMapping("/admin")
+public class AdminController {
+	
+	@Autowired
+	private ProductService productService;
+	
+	@RequestMapping
+	public String adminPage() {
+		
+		return "admin";
+	}
+
+}
+@RequestMapping 끼리 연결
+
+
+	
+	@RequestMapping("/admin/productInventory")
+	public String getProducts(Model model) { // controller -> model -> view
+		
+		
+	}
+	
+
+controller가 product정보를 model에 넣어 view에 뿌려준다.
+Controller -> Model -> View
+
+AdminController.java
+model.addAttribute("products", products); 
+
+productInventory.jsp
+<c:forEach var="product" items="${products}">
+
+"products"와 "${products}"가 일치해야한다.
