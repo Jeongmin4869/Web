@@ -105,7 +105,7 @@ Annotation을 활용 <br/>
 <br/><br/>
 
 + ProductDao.java<br/> 
-@Autowired가 dao-context의 dataSource타입의 데이터를 주입하여 jdbcTemplate을 생성한다.
+@Autowired가 dao-context의 dataSource타입의 데이터를 주입하여 jdbcTemplate을 생성한다.<br/>
 		
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
@@ -113,7 +113,7 @@ Annotation을 활용 <br/>
 	}
 
 <br/>
-DB에서 받는 데이터는 redcord상태로 넘어오게 되는데 이것을 객체(object)형태로 매핑시킨다.
+DB에서 받는 데이터는 redcord상태로 넘어오게 되는데 이것을 객체(object)형태로 매핑시킨다.<br/>
 + new RowMapper<Product>() 를 익명클래스로 구현
 + mapRow는 레코드 수 만큼 호출된다.
 	
@@ -136,15 +136,16 @@ DB에서 받는 데이터는 redcord상태로 넘어오게 되는데 이것을 �
 
 		});
 
+<br/><br/>
 
+jstl/core를 사용해 데이터를 출력. prefix="c" 로 되어있음을 기억한다<br/>
+밑 코드를 추가해 테이블로 출력. <br/>
++ w3schools.com의 BS4 Tables
++ 동적으로 Database를 읽어온다. databaseCore를 활용<br/>
 
-jstl/core를 사용해 데이터를 출력. prefix="c" 로 되어있음을 기억
-밑 코드를 추가해 테이블로 출력. 
-w3schools.com의 BS4 Tables
-동적으로 Database를 읽어온다. databaseCore를 활용
-	<c:forMach var="product" items="${products }"></c:forMach>
-
-items="${products }"에서 products는 controller에 있는 key값과 일치해야한다.
+		<c:forMach var="product" items="${products }"></c:forMach>
+	
++ items="${products }"에서 products는 controller에 있는 key값과 일치해야한다.<br/>
 
 <tr> : tableRow
 
@@ -183,7 +184,7 @@ home.jsp와 products.jsp의 중복된 부분을 apache tiles를 사용하여 재
 
 pom.xml에 라이브러리 추가
 ⁠
-<!-- tiles-extras -->
+	<!-- tiles-extras -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-extras</artifactId>
@@ -220,3 +221,63 @@ apache tiles를 사용하기 위해 밑 태그립 사용
 	
 	<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
+		
+		
+tiles.jsp에 view들 정의
+
+  <definition name="base" template="/WEB-INF/templates/layout.jsp">
+    <put-attribute name="title" value="eStore homepage" />
+    <put-attribute name="menu" value=/WEB-INF/templates/menu.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" />
+  </definition>
+
+    <definition name="home" extends="base">
+    <put-attribute name="title" value="My eStore homepage" />
+    <put-attribute name="body" value=/WEB-INF/views/home.jsp" />
+  </definition>
+  
+home은 base를 상속받음
+나머지는 상속받고, title은 재정의하고, body만 따로 추가.
+ definition name이 각각 controller의 return값과 일치해야한다.
+
+apacheTiles
+중복된 코드 제거
+template을 활용해 사용자에게 동일한 페이지의 느낌을 줄 수 있다
+
+Controller 
+
+@Controller
+@RequestMapping("/admin")
+public class AdminController {
+	
+	@Autowired
+	private ProductService productService;
+	
+	@RequestMapping
+	public String adminPage() {
+		
+		return "admin";
+	}
+
+}
+@RequestMapping 끼리 연결
+
+
+	
+	@RequestMapping("/admin/productInventory")
+	public String getProducts(Model model) { // controller -> model -> view
+		
+		
+	}
+	
+
+controller가 product정보를 model에 넣어 view에 뿌려준다.
+Controller -> Model -> View
+
+AdminController.java
+model.addAttribute("products", products); 
+
+productInventory.jsp
+<c:forEach var="product" items="${products}">
+
+"products"와 "${products}"가 일치해야한다.
