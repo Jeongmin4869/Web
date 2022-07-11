@@ -1,3 +1,5 @@
+*강의를 메모한 내용으로 지속적으로 수정 및 추가 할 예정임* <br/><br/><br/>
+
 # Web Service <br/>
 
 **1. Front-end(HTML/CSS/JavaScript, BootStrap, AngularJS)**  <br/>
@@ -114,11 +116,12 @@ Annotation을 활용 <br/>
 
 <br/>
 DB에서 받는 데이터는 redcord상태로 넘어오게 되는데 이것을 객체(object)형태로 매핑시킨다.<br/>
-+ new RowMapper<Product>() 를 익명클래스로 구현
+
++ new RowMapper<Product>() 를 익명클래스로 구현<br/>
 + mapRow는 레코드 수 만큼 호출된다.
 	
 	return jdbcTemplate.query(sqlStatement,new RowMapper<Product>() {
-
+	
 		@Override
 			public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
 					Product product = new Product();
@@ -138,17 +141,16 @@ DB에서 받는 데이터는 redcord상태로 넘어오게 되는데 이것을 �
 
 <br/><br/>
 
-jstl/core를 사용해 데이터를 출력. prefix="c" 로 되어있음을 기억한다<br/>
-밑 코드를 추가해 테이블로 출력. <br/>
-+ w3schools.com의 BS4 Tables
-+ 동적으로 Database를 읽어온다. databaseCore를 활용<br/>
-
-		<c:forMach var="product" items="${products }"></c:forMach>
+prefix="c" 로 되어있음을 기억한다<br/>
 	
-+ items="${products }"에서 products는 controller에 있는 key값과 일치해야한다.<br/>
-
-<tr> : tableRow
-
+	<c:forMach var="product" items="${products }"></c:forMach>
+		
+	
+<br/>
+	jstl코어 태그를 사용해 데이터를 출력한다.<br/>
+	
+	<tr> : tableRow
+	
 	<div class="container-wapper">
 		<div class="container">
 			<h2>All Products</h2>
@@ -180,9 +182,25 @@ jstl/core를 사용해 데이터를 출력. prefix="c" 로 되어있음을 기�
 		</div>
 	</div>
 
-home.jsp와 products.jsp의 중복된 부분을 apache tiles를 사용하여 재구성
++ w3schools.com의 BS4 Tables을 활용한다.
++ databaseCore를 활용하여 동적으로 Database를 읽어온다. <br/>
++ items="${products }"에서 products는 controller에 있는 key값과 일치해야한다.<br/>
+<br/><br/>
+		
 
-pom.xml에 라이브러리 추가
+**apache tiles** <br/>
+* servlet-context.xml 
+	
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+		<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<beans:property name="prefix" value="/WEB-INF/views/" />
+			<beans:property name="suffix" value=".jsp" />
+		</beans:bean>
+	
+를 통해 웹 페이지를 바꿔왔으나, 중복된 부분이 많으므로 apache tiles를 사용하여 재구성한다.<br/><br/>
+
+		
+* pom.xml에 라이브러리 추가
 ⁠
 	<!-- tiles-extras -->
 		<dependency>
@@ -192,16 +210,7 @@ pom.xml에 라이브러리 추가
 		</dependency>
 
 
-servlet-context의 
-	
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-		<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-			<beans:property name="prefix" value="/WEB-INF/views/" />
-			<beans:property name="suffix" value=".jsp" />
-		</beans:bean>
-	
-를 통해 웹 페이지를 바꿔왔다.
-
+		
 대신 두가지 빈을 등록
 	
 	<beans:bean id="tilesViewResolver"
