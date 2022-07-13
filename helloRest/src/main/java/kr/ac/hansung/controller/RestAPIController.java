@@ -42,6 +42,7 @@ public class RestAPIController {
 		User user = userService.FindById(id);
 		if(user == null) {
 			//do to list : exception (예외처리)
+			throw new UserNotFoundException(id);
 			
 		}
 		return new ResponseEntity<User>(user, HttpStatus.OK); // body에 users.	
@@ -64,5 +65,42 @@ public class RestAPIController {
 			return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 		}
 	
+	// --- Update a User	
+		@RequestMapping(value="/users/{id}", method = RequestMethod.PUT)
+		public ResponseEntity<User> updateUser(@PathVariable("id")long id,
+												@RequestBody User user ){
+			
+			User currentUser = userService.FindById(id);
+			
+			if(currentUser == null) {
+				//to do list : exception
+			}
+			
+			currentUser.setName(user.getName());
+			currentUser.setAge(user.getAge());
+			currentUser.setSalary(user.getSalary());
+			
+			userService.updateUser(currentUser);
+			return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+		}
+	
+	// --- Delete a User
+		@RequestMapping(value="/users/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<User> deleteUser(@PathVariable("id")long id){
+			User user = userService.FindById(id);
+			if(user == null) {
+				// to do list : exception
+			}
+			userService.deleteUserById(id);
+			return new ResponseEntity<User>( HttpStatus.NO_CONTENT);
+		}
+
+	// --- Delete a User
+		@RequestMapping(value="/users", method = RequestMethod.DELETE)
+		public ResponseEntity<User> deleteAllUsers(){
+
+			userService.deleteAllUsers();
+			return new ResponseEntity<User>( HttpStatus.NO_CONTENT);
+		}
 	
 }
