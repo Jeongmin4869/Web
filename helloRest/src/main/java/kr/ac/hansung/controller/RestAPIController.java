@@ -2,10 +2,13 @@ package kr.ac.hansung.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import kr.ac.hansung.exception.UserDuplicatedException;
+import kr.ac.hansung.exception.UserNotFoundException;
 import kr.ac.hansung.model.User;
 import kr.ac.hansung.service.UserService;
 
@@ -54,7 +59,7 @@ public class RestAPIController {
 									UriComponentsBuilder ucBuilder){ // 새롭게 생성된 사용자의 uri를 header정보에 담아서 넘겨주기 위함
 			
 			if(userService.isUserExist(user)) {
-				// to do list : exception
+				throw new UserDuplicatedException(user.getName());
 			}
 			userService.saveUser(user);
 			
@@ -73,7 +78,7 @@ public class RestAPIController {
 			User currentUser = userService.FindById(id);
 			
 			if(currentUser == null) {
-				//to do list : exception
+				throw new UserNotFoundException(id);
 			}
 			
 			currentUser.setName(user.getName());
@@ -89,7 +94,7 @@ public class RestAPIController {
 		public ResponseEntity<User> deleteUser(@PathVariable("id")long id){
 			User user = userService.FindById(id);
 			if(user == null) {
-				// to do list : exception
+				throw new UserNotFoundException(id);
 			}
 			userService.deleteUserById(id);
 			return new ResponseEntity<User>( HttpStatus.NO_CONTENT);
@@ -101,6 +106,12 @@ public class RestAPIController {
 
 			userService.deleteAllUsers();
 			return new ResponseEntity<User>( HttpStatus.NO_CONTENT);
+		}
+		
+		@ExceptionHandler(UserNotFoundException.class)
+		public ResponseEntity<ErrorResponse>
+			handleUserNotFoundException(HttpServletRequest req, UserNotFoundException ex){
+			
 		}
 	
 }
