@@ -16,34 +16,40 @@
 					href="<c:url value="/"/>">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item"><a class="nav-link"
-					href="<c:url value="/products"/>">Products</a>
-				</li>
-				
-<%-- 				<li class="nav-item"><a class="nav-link"
+					href="<c:url value="/products"/>">Products</a></li>
+
+				<%-- 				<li class="nav-item"><a class="nav-link"
 					href="<c:url value="/admin"/>">Admin</a>
 				</li> --%>
-				
+
 				<c:if test="${pageContext.request.userPrincipal.name != null }">
 					<c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
-						<li class="nav-item"><a class="nav-link" href="<c:url value="/admin"/> ">AdminPage</a>
-						</li>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value="/admin"/> ">AdminPage</a></li>
 					</c:if>
-					
-					<li class="nav-item"> <a class="nav-link" 
+
+					<li class="nav-item"><a class="nav-link"
 						href="javascript:document.getElementById('logout').submit()">Logout</a>
 					</li>
 
-					<form id="logout" action="<c:url value="/logout"/>" method = "post">
-						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+					<form id="logout" action="<c:url value="/logout"/>" method="post">
+						<input type="hidden" name="${_csrf.parameterName }"
+							value="${_csrf.token }" />
 					</form>
-					
-				
+
+
 				</c:if>
-				
+
 				<c:if test="${pageContext.request.userPrincipal.name == null }">
-					<li class="nav-item"><a class="nav-link" href="<c:url value="/login"/> ">Login</a>
-					</li>
+					<li class="nav-item"><a class="nav-link"
+						href="<c:url value="/login"/> ">Login</a></li>
 				</c:if>
+
+				<c:if test="${pageContext.request.userPrincipal.name == null }">
+					<li class="nav-item"><a class="nav-link"
+						href="<c:url value="/register"/> ">Register</a></li>
+				</c:if>
+
 
 			</ul>
 			<form class="form-inline mt-2 mt-md-0">
