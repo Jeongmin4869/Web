@@ -2,6 +2,8 @@ package kr.ac.hansung.cse.dao;
 
 import java.util.List;
 
+//spring jdbc -> Hibernate
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
