@@ -16,7 +16,7 @@
 		
 		<div class="form-group">
 			<label for="username">아이디</label>
-			<%-- <span style="color: #ff0000">${usernameMsg}</span> --%>
+			<span style="color: #ff0000">${usernameMsg}</span>
 			<sf:input path="username" id="username" class="form-control"/>
 			<sf:errors path="username" cssStyle="color: #ff0000"/>
 		</div>
