@@ -23,7 +23,7 @@
 		
 		<div class="form-group">
 			<label for="password">패스워드</label>
-			<sf:input path="password" id="password" class="form-control"/>
+			<sf:password path="password" id="password" class="form-control"/>
 			<sf:errors path="password" cssStyle="color: #ff0000"/>
 		</div>
 		
