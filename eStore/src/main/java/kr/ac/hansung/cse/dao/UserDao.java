@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.hansung.cse.model.User;
@@ -16,8 +17,8 @@ import kr.ac.hansung.cse.model.User;
 @Transactional // 각각의 메소드를 프랜젝션으로
 public class UserDao {
 	
-	// @Autowired
-	// private PasswordEncoder passwordEncoder;
+	 @Autowired
+	 private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -25,7 +26,7 @@ public class UserDao {
 	public void addUser(User user) {
 		
 		Session session = sessionFactory.getCurrentSession();
-		//user.setPassword(passwordEncoder.encode(user.getPassoword()));
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		session.saveOrUpdate(user);
 		
 		session.flush();
