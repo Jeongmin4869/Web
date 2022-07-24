@@ -9,7 +9,7 @@
 		<p class="lead">Fill the below information to add a product: </p>
 		
 		<sf:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct" 
-		method="post" modelAttribute="product">
+		method="post" modelAttribute="product" enctype="multipart/form-data">
 		
 		<div class ="form-group">
 			<label for="name">Name</label>
@@ -45,6 +45,11 @@
 			<label for="manufacturer">Manufacturer</label>
 			<sf:textarea path="manufacturer" id="manufacturer" class="form-control"/>
 			<sf:errors path="manufacturer" cssStyle="color:#ff0000;"/>
+		</div>
+		
+		<div class="form-group">
+			<label for="productImage">Upload Picture</label>
+			<sf:input path="productImage" id="productImage" type="file" class="form-control"/>
 		</div>
 		
 		<input type="submit" value="submit" class="btn btn-default">

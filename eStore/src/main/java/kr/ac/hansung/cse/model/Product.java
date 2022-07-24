@@ -6,8 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -40,4 +43,11 @@ public class Product {
 	private int unitInStock;
 	
 	private String description;
+	
+	@Transient // db에 저장하지 않는다, 다른 filesystem에 저장 할 예정
+	private MultipartFile productImage; 
+	
+	//실제로 저장되는건 파일의 이름
+	private String imageFilename;
+	
 }
