@@ -8,7 +8,7 @@
 		<h1> Add Product</h1>
 		<p class="lead">Fill the below information to add a product: </p>
 		
-		<sf:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct" 
+		<sf:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct?${_csrf.parameterName}=${_csrf.token}" 
 		method="post" modelAttribute="product" enctype="multipart/form-data">
 		
 		<div class ="form-group">
