@@ -1,5 +1,6 @@
 package kr.ac.hansung.cse.controller;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -89,10 +90,14 @@ public class AdminController {
 		if(productImage != null && !productImage.isEmpty()) {
 			try {
 				productImage.transferTo(new File(savePath.toString()));
+				//productImage.transferTo(savePath.toFile());
+				System.out.println("transfer file");
 			} catch (IllegalStateException e) {
+				System.out.println("transfer Error 1");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) { 
+				System.out.println("transfer Error 2 ");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -101,6 +106,7 @@ public class AdminController {
 		product.setImageFilename(productImage.getOriginalFilename());
 		
 		productService.addProduct(product);
+		
 		return "redirect:/admin/productInventory";
 		
 	}

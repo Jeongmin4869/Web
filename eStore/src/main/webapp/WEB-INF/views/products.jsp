@@ -27,7 +27,7 @@
 						<td>${product.category}</td>
 						<td>${product.price}</td>
 						<td>${product.manufacturer}</td>
-						<td>${product.unitInStock}</td>
+						<td>${product.unitInStock}</td> 
 						<td>${product.description}</td>
 					</tr>
 				</c:forEach>
