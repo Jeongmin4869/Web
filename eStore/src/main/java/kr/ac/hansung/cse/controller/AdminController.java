@@ -130,7 +130,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/productInventory/updateProduct", method=RequestMethod.POST)
-	public String updateProductPost(@Valid Product product, BindingResult result) {
+	public String updateProductPost(@Valid Product product, BindingResult result, HttpServletRequest request) {
 		//System.out.println(product);
 		
 		if(result.hasErrors()) {
@@ -142,6 +142,28 @@ public class AdminController {
 			}
 			return "updateProduct";
 		}
+
+		MultipartFile productImage = product.getProductImage();
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/"); // 루트의 경로
+		Path savePath = Paths.get(rootDirectory + "\\resources\\images\\" + productImage.getOriginalFilename());
+		
+		if(productImage != null && !productImage.isEmpty()) {
+			try {
+				productImage.transferTo(new File(savePath.toString()));
+				//productImage.transferTo(savePath.toFile());
+				System.out.println("transfer file");
+			} catch (IllegalStateException e) {
+				System.out.println("transfer Error 1");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) { 
+				System.out.println("transfer Error 2 ");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		product.setImageFilename(productImage.getOriginalFilename());
 
 		productService.updateProduct(product);
 		return "redirect:/admin/productInventory";
