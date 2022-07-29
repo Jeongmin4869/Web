@@ -3,6 +3,7 @@ package kr.ac.hansung.cse.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -112,9 +113,21 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/productInventory/deleteProduct/{id}",  method=RequestMethod.GET)
-	public String deleteProduct(@PathVariable int id) {
+	public String deleteProduct(@PathVariable int id, HttpServletRequest request) {
 		
 		Product product = productService.getProductById(id);
+		
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		Path savePath = Paths.get(rootDirectory + "\\resources\\images\\" + product.getImageFilename());
+		
+		if(Files.exists(savePath)) {
+			try {
+				Files.delete(savePath);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 		productService.deleteProduct(product);
 		
