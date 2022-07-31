@@ -30,7 +30,7 @@
 						<td>${product.manufacturer}</td>
 						<td>${product.unitInStock}</td> 
 						<td>${product.description}</td>
-						<td> <i class="fa fa-info-circle"></i> </td>
+						<td><a href="<c:url value = "/viewProduct/${product.id}"/>" ><i class="fa fa-info-circle"></i></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
