@@ -36,9 +36,13 @@ public class User {
 	@NotEmpty(message = "The email must not be null")
 	private String email;
 	
-	@OneToOne(optional=false, cascade=CascadeType.ALL)
+	@OneToOne(optional=false, cascade=CascadeType.ALL) 
 	@JoinColumn(unique=true) // 유일한 값
 	private ShippingAddress shippingAddress;
+	
+	@OneToOne(optional=false, cascade=CascadeType.ALL) 
+	@JoinColumn(unique=true) 
+	private Cart cart;
 	
 	private boolean enabled = false;
 	
