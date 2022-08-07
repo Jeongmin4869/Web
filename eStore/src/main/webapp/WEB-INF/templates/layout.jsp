@@ -26,8 +26,11 @@
 <link href="<c:url value="/resources/css/carousel2.css"/>"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
+<!-- font-awesome -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+<!-- AngularJS -->
+<script src = https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js></script>
 </head>
 <body>
 
