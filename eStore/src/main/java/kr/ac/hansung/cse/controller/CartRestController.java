@@ -21,7 +21,7 @@ import kr.ac.hansung.cse.service.CartService;
 import kr.ac.hansung.cse.service.ProductService;
 import kr.ac.hansung.cse.service.UserService;
 
-@RestController
+@RestController // @Controller + @ResponseBody
 @RequestMapping("/api/cart")
 public class CartRestController {
 
@@ -37,7 +37,7 @@ public class CartRestController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping("/{cartId}")
+	@RequestMapping(value = "/{cartId}", method=RequestMethod.GET)
 	public ResponseEntity<Cart> getCartById(@PathVariable(value = "cartId") int cartId){
 		Cart cart = cartService.getCartById(cartId);
 		return new ResponseEntity<Cart>(cart, HttpStatus.OK);
@@ -56,6 +56,7 @@ public class CartRestController {
 	
 		Product product = productService.getProductById(productId);
 	
+		//현재 인증된(로그인된) 사용자의 정보를 가져온다.
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
 		
@@ -83,7 +84,7 @@ public class CartRestController {
 		cartItem.setProduct(product);
 		cartItem.setCart(cart);
 		
-		// bidirectional
+		// bidirectional 양방향
 		cart.getCartItems().add(cartItem);
 		
 		cartItemService.addCartItem(cartItem);
@@ -92,7 +93,7 @@ public class CartRestController {
 	
 	}
 	
-	@RequestMapping(value="/cartItem/{productId}", method = RequestMethod.DELETE)
+	@RequestMapping(value="/cartitem/{productId}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> removeItem(@PathVariable(value="productId") int productId){
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
