@@ -23,10 +23,9 @@ public class CartController {
 		//현재 로그인한 User의 CartId를 가져온다.
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
-		
 		User user = userService.getUserByUsername(username);
+		System.out.println("user" + user);
 		int cartId = user.getCart().getId();
-		
 		model.addAttribute("cartId", cartId);
 		
 		return "cart";
