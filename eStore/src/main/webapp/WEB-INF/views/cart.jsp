@@ -18,7 +18,7 @@
 		
 		<section class="container" ng-app="cartApp">
 			<div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')">
-				<a class="btn btn-warning pull left" ng-click="classCart()">
+				<a class="btn btn-warning pull-left" ng-click="clearCart()">
 					<i class="fa fa-trash"></i> Clear Cart
 				</a>
 				
@@ -39,14 +39,14 @@
 						<td>{{item.quantity}}</td>
 						<td>{{item.totalPrice}}</td>
 						<td><a class="btn btn-danger" ng-click="removeFromCart(item.product.id)">
-							<i class="fa fa-minus"></i>remove </a></td>
+							<i class="fa fa-minus"></i>remove</a></td>
 					</tr>
 					
 					<tr>
 						<td></td>
 						<td></td>
 						<td>Grand Total</td>
-						<td>{{calCrandTotal()}}</td>
+						<td>{{calGrandTotal()}}</td>
 						<td></td>
 					</tr>
 				</table>
