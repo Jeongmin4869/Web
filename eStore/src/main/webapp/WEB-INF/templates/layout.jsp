@@ -11,6 +11,10 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
 <title><tiles:insertAttribute name="title"/></title>

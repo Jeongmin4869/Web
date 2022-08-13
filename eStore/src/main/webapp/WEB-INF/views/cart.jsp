@@ -17,7 +17,7 @@
 		</div>
 		
 		<section class="container" ng-app="cartApp">
-			<div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')">
+			<div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')"> <!-- controller 에서 model 에넣어준 id값 -->
 				<a class="btn btn-warning pull-left" ng-click="clearCart()">
 					<i class="fa fa-trash"></i> Clear Cart
 				</a>
