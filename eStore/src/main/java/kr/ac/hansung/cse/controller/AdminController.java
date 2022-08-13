@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -76,16 +77,16 @@ public class AdminController {
 		
 		MultipartFile productImage = product.getProductImage();
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/"); // 루트의 경로
-		Path savePath = Paths.get(rootDirectory + "\\resources\\images\\" + productImage.getOriginalFilename());
+		UUID uuid = UUID.randomUUID();
+		Path savePath = Paths.get(rootDirectory + "\\resources\\images\\" + uuid.toString() + "_" +productImage.getOriginalFilename());
 		
 		if(productImage.isEmpty() == false) {
 			System.out.println("-----------------------file start---------------------");
 			System.out.println("name : " + productImage.getName());
-			System.out.println("filename : " + productImage.getOriginalFilename());
+			System.out.println("filename : " + uuid.toString() + "_" +productImage.getOriginalFilename());
 			System.out.println("size : " + productImage.getSize());
 			System.out.println("savePath : " + savePath);
 			System.out.println("-----------------------file end-----------------------");
-			
 		}
 		
 		if(productImage != null && !productImage.isEmpty()) {
@@ -104,7 +105,7 @@ public class AdminController {
 			}
 		}
 		
-		product.setImageFilename(productImage.getOriginalFilename());
+		product.setImageFilename(uuid.toString() + "_" +productImage.getOriginalFilename());
 		
 		productService.addProduct(product);
 		
@@ -158,7 +159,8 @@ public class AdminController {
 
 		MultipartFile productImage = product.getProductImage();
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/"); // 루트의 경로
-		Path savePath = Paths.get(rootDirectory + "\\resources\\images\\" + productImage.getOriginalFilename());
+		UUID uuid = UUID.randomUUID();
+		Path savePath = Paths.get(rootDirectory + "\\resources\\images\\" + uuid.toString() + "_" +productImage.getOriginalFilename());
 		
 		if(productImage != null && !productImage.isEmpty()) {
 			try {
@@ -176,11 +178,12 @@ public class AdminController {
 			}
 		}
 		
-		product.setImageFilename(productImage.getOriginalFilename());
+		product.setImageFilename(uuid.toString() + "_" +productImage.getOriginalFilename());
 
 		productService.updateProduct(product);
 		return "redirect:/admin/productInventory";
 		
 	}
+
 
 }
