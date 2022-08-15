@@ -35,7 +35,7 @@ public class CartItemDao {
 	}
 	
 	public void removeAllCartItems(Cart cart) {
-		List<CartItem> cartItems = cart.getCartItems();
+		List<CartItem> cartItems = cart.getCartItems(); //fetch=FetchType.EAGER 이기 때문에 cartItems 바로 사용 가능
 		
 		for(CartItem item : cartItems) {
 			removeCartItem(item);
@@ -49,7 +49,7 @@ public class CartItemDao {
 		query.setParameter(0, cartId);
 		query.setParameter(1, productId);
 		
-		return(CartItem) query.getSingleResult();
+		return (CartItem) query.getSingleResult();
 	}
 	
 

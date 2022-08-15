@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,26 +19,26 @@ import lombok.ToString;
 @Setter
 @ToString(exclude = "cart")
 @Entity
-public class CartItem implements Serializable{
+public class CartItem implements Serializable {
 
-	//version id
+	// version id
 	private static final long serialVersionUID = -7296960050350583877L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="cartId")
-	//@JsonIgnore
+	@JoinColumn(name = "cartId")
+	@JsonIgnore
 	private Cart cart;
-	
+
 	@ManyToOne
-	@JoinColumn(name="productId")
+	@JoinColumn(name = "productId")
 	private Product product;
-	
+
 	private int quantity;
-	
+
 	private double totalPrice;
 
 }

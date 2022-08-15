@@ -56,6 +56,7 @@ public class RegisterController {
 		else 
 			user.setAuthority("ROLE_USER");
 		
+		//cascadeType.ALL 이라 존재해있어야하기 때문에 Cart 생성해준다
 		Cart cart = new Cart();
 		user.setCart(cart);
 		
