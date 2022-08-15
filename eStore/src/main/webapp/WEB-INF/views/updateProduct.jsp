@@ -54,6 +54,8 @@
 			<sf:input path="productImage" id="productImage" type="file" class="form-control"/>
 		</div>
 		
+		<sf:hidden path="imageFilename"/>
+		
 		<input type="submit" value="submit" class="btn btn-default">
 		<a href="<c:url value="/admin/productInventory" />" class="btn btn-default">Cancel</a>
 		</sf:form>

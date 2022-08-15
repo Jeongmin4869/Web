@@ -139,13 +139,17 @@ public class AdminController {
 	public String updateProduct(@PathVariable int id, Model model) {
 		Product product = productService.getProductById(id);
 		model.addAttribute("product", product);
+		
+		//System.out.println("ImageFilename : " + product.getImageFilename()); // 나중에 삭제, 파일이름 잘 나옴
+		
 		return "updateProduct";
 	
 	}
 	
 	@RequestMapping(value = "/productInventory/updateProduct", method=RequestMethod.POST)
 	public String updateProductPost(@Valid Product product, BindingResult result, HttpServletRequest request) {
-		//System.out.println(product);
+		
+		System.out.println("ImageFilename : " + product.getImageFilename()); // 왜 null??
 		
 		if(result.hasErrors()) {
 			System.out.println("Form data has some errors");
@@ -165,21 +169,19 @@ public class AdminController {
 		if(productImage != null && !productImage.isEmpty()) {
 			try {
 				productImage.transferTo(new File(savePath.toString()));
-				//productImage.transferTo(savePath.toFile());
-				System.out.println("transfer file");
+				product.setImageFilename(uuid.toString() + "_" +productImage.getOriginalFilename());
 			} catch (IllegalStateException e) {
-				System.out.println("transfer Error 1");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) { 
-				System.out.println("transfer Error 2 ");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		else {
+			product.setImageFilename(product.getImageFilename());
+		}
 		
-		product.setImageFilename(uuid.toString() + "_" +productImage.getOriginalFilename());
-
 		productService.updateProduct(product);
 		return "redirect:/admin/productInventory";
 		
