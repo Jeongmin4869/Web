@@ -30,7 +30,9 @@
 						<th>Unit Price</th>
 						<th>Quantity</th>
 						<th>Total Price</th>
+						<th></th>
 						<th>Action</th>
+						<th></th>
 					</tr>
 				
 					<tr ng-repeat="item in cart.cartItems">
@@ -39,7 +41,11 @@
 						<td>{{item.quantity}}</td>
 						<td>{{item.totalPrice}}</td>
 						<td><a class="btn btn-danger" ng-click="removeFromCart(item.product.id)">
-							<i class="fa fa-minus"></i>remove</a></td>
+							<i class="fa fa-minus"></i>plus</a></td>
+						<td><a class="btn btn-danger" ng-click="removeFromCart(item.product.id)">
+							<i class="fa fa-plus"></i>minus</a></td>
+						<td><a class="btn btn-danger" ng-click="removeFromCart(item.product.id)">
+							<i class="fa fa-close"></i>remove</a></td>
 					</tr>
 					
 					<tr>

@@ -93,6 +93,38 @@ public class CartRestController {
 	
 	}
 	
+	
+	
+	@RequestMapping(value="/minus/{productId}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> minusItem(@PathVariable(value="productId")int productId){
+	
+		Product product = productService.getProductById(productId);
+	
+		//현재 인증된(로그인된) 사용자의 정보를 가져온다.
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		
+		User user = userService.getUserByUsername(username);
+		Cart cart = user.getCart();
+		
+		List<CartItem> cartItems = cart.getCartItems();
+		
+		//check if cartitem for a given product already exists
+		for(int i=0; i<cartItems.size(); i++) {
+			if(product.getId() == cartItems.get(i).getProduct().getId()) {
+				CartItem cartItem = cartItems.get(i);
+				cartItem.setQuantity(cartItem.getQuantity()-1);
+				cartItem.setTotalPrice(product.getPrice() * cartItem.getQuantity());
+				cartItemService.addCartItem(cartItem);
+
+			}
+		}
+
+		return new ResponseEntity<>(HttpStatus.OK);
+	
+	}
+	
+	
 	@RequestMapping(value="/cartitem/{productId}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> removeItem(@PathVariable(value="productId") int productId){
 		
