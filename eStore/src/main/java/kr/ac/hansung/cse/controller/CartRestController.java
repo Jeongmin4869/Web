@@ -95,7 +95,7 @@ public class CartRestController {
 	
 	
 	
-	@RequestMapping(value="/minus/{productId}", method = RequestMethod.PUT)
+	@RequestMapping(value="/update/{productId}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> minusItem(@PathVariable(value="productId")int productId){
 	
 		Product product = productService.getProductById(productId);

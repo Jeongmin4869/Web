@@ -35,7 +35,19 @@ cartApp.controller("cartCtrl", function($scope, $http) {
 
 		$http.put('/eStore/api/cart/add/' + productId).then(
 				function successCallback() {
-					alert("Product successfully added to the cart!");
+					$scope.refreshCart();
+				}, function errorCallback() {
+					alert("Adding to the cart failed!");
+				});
+	};
+	
+	$scope.minusItem = function(productId) {
+
+		$scope.setCsrfToken();
+
+		$http.put('/eStore/api/cart/update/' + productId).then(
+				function successCallback() {
+					$scope.refreshCart();
 				}, function errorCallback() {
 					alert("Adding to the cart failed!");
 				});
