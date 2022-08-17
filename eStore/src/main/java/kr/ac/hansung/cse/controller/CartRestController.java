@@ -116,7 +116,9 @@ public class CartRestController {
 				cartItem.setQuantity(cartItem.getQuantity()-1);
 				cartItem.setTotalPrice(product.getPrice() * cartItem.getQuantity());
 				cartItemService.addCartItem(cartItem);
-
+				if (cartItem.getQuantity() == 0) {
+					cartItemService.removeCartItem(cartItem);
+				}
 			}
 		}
 
