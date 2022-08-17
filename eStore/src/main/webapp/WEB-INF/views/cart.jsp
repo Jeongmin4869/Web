@@ -54,6 +54,8 @@
 						<td>Grand Total</td>
 						<td>{{calGrandTotal()}}</td>
 						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 				</table>
 				
