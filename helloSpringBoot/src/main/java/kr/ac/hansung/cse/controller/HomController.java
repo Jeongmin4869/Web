@@ -11,7 +11,7 @@ public class HomController {
 	// @RequestMapping(value = "/", method = RequestMethod.GET);
 	@GetMapping("/")
 	public String home(Model model) {
-		model.addAttribute("mseeage", "hello world");
+		model.addAttribute("message", "hello world");
 		return "index";
 	}
 	
