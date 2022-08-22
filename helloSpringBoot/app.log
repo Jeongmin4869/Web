@@ -62,3 +62,4 @@ This generated password is for development use only. Your security configuration
 2022-08-21 22:22:13,025 INFO [http-nio-9000-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:525] Initializing Servlet 'dispatcherServlet'
 2022-08-21 22:22:13,027 INFO [http-nio-9000-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:547] Completed initialization in 1 ms
 2022-08-21 22:22:13,107 DEBUG [http-nio-9000-exec-1] k.a.h.c.c.HomeController [HomeController.java:19] Calling home()
+2022-08-22 22:12:00,585 INFO [RMI TCP Connection(2)-127.0.0.1] o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [SpringApplicationAdminMXBeanRegistrar.java:159] Application shutdown requested.
